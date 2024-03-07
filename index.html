@@ -10,12 +10,12 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body, html {
             height: 100%;
             margin: 0;
         }
-
+        
         body {
             font-family: "Sora", sans-serif;
             background: linear-gradient(to right, #ffdad5, #fff7f9);
@@ -25,55 +25,52 @@
             justify-content: start;
             padding-top: 50px; /* Space for the input box */
         }
-
+        
         .input-area {
             text-align: center;
             width: 100%;
             padding-bottom: 20px;
         }
-
+        
         #blockNumberInput, #generateButton {
             margin: 10px 0;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
+        
         #generateButton {
             cursor: pointer;
             background-color: #f09;
             color: white;
             border: none;
         }
-
+        
         #generateButton:hover {
             background-color: #c07;
         }
-
+        
         #content {
             display: flex;
-            flex-direction: column; /* This stacks the image and stats box vertically */
-            align-items: center;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
             margin-top: 20px;
         }
-
+        
         #generatedImageContainer {
-            width: 100%; /* Adjust as necessary */
-            margin-right: 20px; /* Space from stats container */
+            margin-right: 20px;
             border-radius: 8px;
             overflow: hidden;
-            position: relative; /* Needed for absolute positioning of children */
         }
-
+        
         #statsContainer {
             background: #fff;
             padding: 1rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            transform: translate(100%, 0); /* Positions the box to the right of the image */
+            position: relative;
+			  margin-bottom: 20px;
         }
     </style>
     <meta charset="utf-8" />
@@ -87,12 +84,12 @@
     <div id="content">
         <div id="generatedImageContainer">
             <!-- The script will generate the image and place it here -->
-            <!-- The stats box is moved inside the image container -->
-            <div id="statsContainer">
-                <!-- Statistics will be inserted here by the updateStats() function -->
-            </div>
+        </div>
+        <div id="statsContainer">
+            <!-- Statistics will be inserted here by the updateStats() function -->
         </div>
     </div>
     <script src="sketch.js"></script>
 </body>
 </html>
+

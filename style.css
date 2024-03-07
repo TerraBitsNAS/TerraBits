@@ -4,63 +4,65 @@
     box-sizing: border-box;
 }
 
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: "Sora", sans-serif;
     background: linear-gradient(to right, #ffdad5, #fff7f9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    width: 80vw;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .input-area {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensure it's above other content */
     text-align: center;
 }
 
-.generated-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-#generatedImageContainer {
-    margin-right: 1rem;
-    border-radius: 8px; /* Adjust to match the desired rounded corner */
-    overflow: hidden; /* Makes sure the image respects the border radius */
-}
-
-#stats {
-    text-align: left;
-    margin-left: 1rem;
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px; /* Adjust to match the desired rounded corner */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-input[type="text"], button {
+#blockNumberInput, #generateButton {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px; /* Reduced roundness */
+    border-radius: 4px;
 }
 
-button {
+#generateButton {
     cursor: pointer;
     background-color: #f09;
     color: white;
     border: none;
 }
 
-button:hover {
+#generateButton:hover {
     background-color: #c07;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 60px; /* Adjust based on the height of your input area */
+}
+
+#generatedImageContainer {
+    margin-right: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#statsContainer {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    bottom: 0;
+    right: 0;
 }

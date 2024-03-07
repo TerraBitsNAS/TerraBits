@@ -199,11 +199,11 @@ function getSeaNoiseThreshold() {
 function updateStats() {
   // Assuming waterTiles, earthTiles, treeTiles, oreTiles, and goldTiles are already defined
   let statsHTML = `
-    <p>Water Area: ${waterTiles}</p>
-    <p>Land Area: ${earthTiles}</p>
-    <p>Forests: ${treeTiles}</p>
-    <p>Ore Deposits: ${oreTiles}</p>
-    <p>Gold Mines: ${goldTiles}</p>
+    <p><b>Water Area:</b> ${waterTiles}</p>
+    <p><b>Land Area:</b> ${earthTiles}</p>
+    <p><b>Forests:</b> ${treeTiles}</p>
+    <p><b>Ore Deposits:</b> ${oreTiles}</p>
+    <p><b>Gold Mines:</b> ${goldTiles}</p>
   `;
   // Insert the stats into the 'statsContainer' div
   document.getElementById('statsContainer').innerHTML = statsHTML;

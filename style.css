@@ -2,10 +2,9 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  font-family: "Sora", sans-serif;
+background: linear-gradient (#ffdad5, #fff7f9);
 
 }
-body{
-font-family: "Sora", sans-serif;
-background: linear-gradient (#ffdad5, #fff7f9);
-}
+
+

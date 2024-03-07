@@ -4,17 +4,84 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/addons/p5.sound.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            font-family: "Sora", sans-serif;
+            background: linear-gradient(to right, #ffdad5, #fff7f9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            padding-top: 50px; /* Space for the input box */
+        }
+        
+        .input-area {
+            text-align: center;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+        
+        #blockNumberInput, #generateButton {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        #generateButton {
+            cursor: pointer;
+            background-color: #f09;
+            color: white;
+            border: none;
+        }
+        
+        #generateButton:hover {
+            background-color: #c07;
+        }
+        
+        #content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        #generatedImageContainer {
+            margin-right: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        #statsContainer {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+    </style>
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class="TerraBit viewer" style="text-align: center;">
+    <div class="input-area">
         <h2>TerraBits</h2>
         <input type="text" id="blockNumberInput" placeholder="Enter block number">
         <button id="generateButton">Generate</button>
     </div>
-    <div id="content" style="display: flex; justify-content: center; align-items: start; margin-top: 20px;">
-        <div id="generatedImageContainer" style="margin-right: 20px;">
+    <div id="content">
+        <div id="generatedImageContainer">
             <!-- The script will generate the image and place it here -->
         </div>
         <div id="statsContainer">

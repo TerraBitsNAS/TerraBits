@@ -8,26 +8,39 @@ body {
     font-family: "Sora", sans-serif;
     background: linear-gradient(to right, #ffdad5, #fff7f9);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 100vh;
     text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    gap: 20px; /* Adjust space between image and stats */
+    padding: 20px;
 }
 
 .TerraBit {
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 5px; /* Reduced roundness */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
-    position: fixed; /* Make input box static */
-    top: 10px; /* Position towards the top */
-    z-index: 10; /* Ensure it's above other content */
+    margin-top: 5vh; /* Adjust to put the input box more at the top */
+}
+
+#generatedImageContainer img {
+    border-radius: 8px; /* Rounded corners for the image */
 }
 
 input[type="text"], button {
     margin: 5px 0;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 3px; /* Reduced roundness */
+    border-radius: 4px; /* Reduced roundness */
 }
 
 button {
@@ -35,19 +48,14 @@ button {
     background-color: #f09;
     color: white;
     border: none;
-    border-radius: 3px; /* Reduced roundness */
+    border-radius: 4px; /* Reduced roundness */
 }
 
 button:hover {
     background-color: #c07;
 }
 
-#generatedImageContainer {
-    margin-top: 150px; /* Adjust as needed for spacing */
-}
-
-#generatedImage {
-    border-radius: 5px; /* Match roundness with the form */
-    max-width: 90vw; /* Responsive image sizing */
-    margin-bottom: 20px; /* Space after the image */
+.stats p {
+    text-align: left;
+    margin-left: 10px;
 }

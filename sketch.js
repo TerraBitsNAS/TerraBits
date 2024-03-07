@@ -57,6 +57,9 @@ function generateLand() {
       drawTile(x, y, landNoiseVal, forestNoiseVal);
     }
   }
+
+  // Update statistics next to the generated image
+  updateStats();
 }
 
 function drawTile(x, y, landNoiseVal, forestNoiseVal) {

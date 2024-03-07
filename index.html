@@ -8,13 +8,19 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class="TerraBit viewer" style="text-align: center;">
-        <h2>TerraBits</h2>
-        <input type="text" id="blockNumberInput" placeholder="Enter block number">
-        <button id="generateButton">Generate</button>
-    </div>
-    <div id="generatedImageContainer">
-         <script src="sketch.js"></script>
+    <div class="content">
+        <div class="TerraBit viewer" style="text-align: center;">
+            <h2>TerraBits</h2>
+            <input type="text" id="blockNumberInput" placeholder="Enter block number">
+            <button id="generateButton">Generate</button>
+        </div>
+        <div id="generatedImageContainer">
+            <!-- Image will be inserted by p5.js script -->
+            <script src="sketch.js"></script>
+        </div>
+        <div id="statsContainer" class="stats">
+            <!-- Stats will be inserted by the updateStats function -->
+        </div>
     </div>
 </body>
 </html>

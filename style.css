@@ -1,3 +1,4 @@
+/* No changes needed for these initial styles */
 * {
     margin: 0;
     padding: 0;
@@ -15,13 +16,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px; /* Adjusted to give space to input area */
+    padding-top: 50px; /* Space for the input box */
 }
 
 .input-area {
     text-align: center;
     width: 100%;
-    padding-bottom: 20px; /* Give some space below the input area */
+    padding-bottom: 20px;
 }
 
 #blockNumberInput, #generateButton {
@@ -42,28 +43,31 @@ body {
     background-color: #c07;
 }
 
+/* Updated styles */
 #content {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
+    flex-direction: column;
     align-items: center;
-    width: 100%; /* Ensure content takes full width */
+    width: 100%;
+    position: relative; /* Added to position statsContainer with respect to this */
+    margin-top: 20px; /* Ensure some space from the input area */
 }
 
 #generatedImageContainer {
-    position: relative; /* Position relative to allow absolute positioning inside */
-    margin-top: 20px; /* Space from input-area */
+    width: 100%; /* Set to the desired width */
     border-radius: 8px;
     overflow: hidden;
+    position: relative; /* Stay in the flow of the document */
     z-index: 2; /* Above the statsContainer */
 }
 
 #statsContainer {
-    background: #fff;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    right: 20px; /* Adjust as needed */
-    bottom: 20px; /* Adjust as needed */
+    position: absolute; /* Position relative to the #content */
+    right: 20px; /* Adjust as needed for proper alignment */
+    bottom: 20px; /* Adjust as needed for proper alignment */
     z-index: 1; /* Below the generatedImageContainer */
+    background: #fff;
 }

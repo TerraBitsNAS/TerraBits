@@ -10,13 +10,10 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body, html {
             height: 100%;
             margin: 0;
-        }
-        
-        body {
             font-family: "Sora", sans-serif;
             background: linear-gradient(to right, #ffdad5, #fff7f9);
             display: flex;
@@ -25,52 +22,54 @@
             justify-content: start;
             padding-top: 50px; /* Space for the input box */
         }
-        
+
         .input-area {
             text-align: center;
             width: 100%;
             padding-bottom: 20px;
         }
-        
+
         #blockNumberInput, #generateButton {
             margin: 10px 0;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        
+
         #generateButton {
             cursor: pointer;
             background-color: #f09;
             color: white;
             border: none;
         }
-        
+
         #generateButton:hover {
             background-color: #c07;
         }
-        
+
         #content {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* Adjusted */
             align-items: flex-start;
             flex-wrap: wrap;
             margin-top: 20px;
         }
-        
+
         #generatedImageContainer {
             margin-right: 20px;
             border-radius: 8px;
             overflow: hidden;
+            width: calc(50% - 10px); /* Adjusted */
         }
-        
+
         #statsContainer {
             background: #fff;
             padding: 1rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
-			  margin-bottom: 20px;
+            margin-bottom: 20px;
+            width: calc(50% - 10px); /* Adjusted */
         }
     </style>
     <meta charset="utf-8" />

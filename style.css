@@ -3,10 +3,9 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
-canvas {
-  display: block;
+
 }
-body {
-  font-family: "Sora", sans-serif;
+body{
+font-family: "Sora", sans-serif;
 background: linear-gradient (#ffdad5, #fff7f9);
 }

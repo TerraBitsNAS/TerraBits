@@ -192,3 +192,17 @@ function getSeaNoiseThreshold() {
     return 0.4; // Default value
   }
 }
+
+function updateStats() {
+  // Assuming waterTiles, earthTiles, treeTiles, oreTiles, and goldTiles are already defined
+  let statsHTML = `
+    <p>Water Area: ${waterTiles}</p>
+    <p>Earth Area: ${earthTiles}</p>
+    <p>Tree Area: ${treeTiles}</p>
+    <p>Ore Area: ${oreTiles}</p>
+    <p>Gold Area: ${goldTiles}</p>
+  `;
+  // Insert the stats into the 'statsContainer' div
+  document.getElementById('statsContainer').innerHTML = statsHTML;
+}
+

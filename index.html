@@ -50,22 +50,28 @@
             background-color: #c07;
         }
 
-    #content {
-        display: flex;
-        margin-top: 20px;
-    }
-
-    #generatedImageContainer,
-    #statsContainer {
-        border-radius: 8px;
-        overflow: hidden;
-        width: 48%; /* Adjust the width as needed, considering margin and border */
-        margin-right: 2%; /* Adjust the margin between containers */
-    }
-
-    #statsContainer {
-        margin-right: 0; /* No margin on the right for the last container */
-    }
+       #content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        #generatedImageContainer {
+            margin-right: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        #statsContainer {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+			  margin-bottom: 20px;
+        }
     </style>
     <meta charset="utf-8" />
 </head>

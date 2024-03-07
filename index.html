@@ -8,43 +8,19 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class="container">
-        <div class="input-area">
-            <h2>TerraBits</h2>
-            <input type="text" id="blockNumberInput" placeholder="Enter block number">
-            <button id="generateButton" onclick="generate()">Generate</button>
+    <div class="TerraBit viewer" style="text-align: center;">
+        <h2>TerraBits</h2>
+        <input type="text" id="blockNumberInput" placeholder="Enter block number">
+        <button id="generateButton">Generate</button>
+    </div>
+    <div id="content" style="display: flex; justify-content: center; align-items: start; margin-top: 20px;">
+        <div id="generatedImageContainer" style="margin-right: 20px;">
+            <!-- The script will generate the image and place it here -->
         </div>
-        <div class="generated-content">
-            <div id="generatedImageContainer">
-                <!-- The script will insert the image here -->
-            </div>
-            <div id="stats">
-                <!-- Stats will go here -->
-            </div>
+        <div id="statsContainer">
+            <!-- Statistics will be inserted here by the updateStats() function -->
         </div>
     </div>
     <script src="sketch.js"></script>
-    <script>
-        // This function should be called when the image is generated
-        function generate() {
-            // This is just an example, you will need to adapt it
-            // to call the appropriate function from sketch.js
-            createImage();
-
-function updateStats
-    }
-
-        // Function to update stats; you'll need to adjust it according to how
-        // your stats are actually calculated or retrieved.
-        function updateStats(waterArea, earthArea, treeArea, oreArea, goldArea) {
-            document.getElementById('stats').innerHTML = `
-                <p>Water Area: ${waterArea}</p>
-                <p>Earth Area: ${earthArea}</p>
-                <p>Tree Area: ${treeArea}</p>
-                <p>Ore Area: ${oreArea}</p>
-                <p>Gold Area: ${goldArea}</p>
-            `;
-        }
-    </script>
 </body>
 </html>

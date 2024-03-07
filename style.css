@@ -1,13 +1,40 @@
- {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-  font-family: "Sora", sans-serif;
-background: linear-gradient (#ffdad5, #fff7f9);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: "Sora", sans-serif;
+    background: linear-gradient(to right, #ffdad5, #fff7f9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use full viewport height */
+    text-align: center;
+}
 
+.TerraBit {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Optional: for better readability */
+}
 
+input[type="text"], button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
+button {
+    cursor: pointer;
+    background-color: #f09;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #c07;
+}

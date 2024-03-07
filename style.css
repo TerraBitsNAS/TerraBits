@@ -10,35 +10,46 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     height: 100vh;
+}
+
+.container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-area {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
-.content {
+.generated-content {
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: center;
-    gap: 20px; /* Adjust space between image and stats */
-    padding: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.TerraBit {
-    padding: 10px;
-    border-radius: 5px; /* Reduced roundness */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    margin-top: 5vh; /* Adjust to put the input box more at the top */
+#generatedImageContainer {
+    margin-right: 1rem;
+    border-radius: 8px; /* Adjust to match the desired rounded corner */
+    overflow: hidden; /* Makes sure the image respects the border radius */
 }
 
-#generatedImageContainer img {
-    border-radius: 8px; /* Rounded corners for the image */
+#stats {
+    text-align: left;
+    margin-left: 1rem;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px; /* Adjust to match the desired rounded corner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"], button {
-    margin: 5px 0;
-    padding: 8px;
+    margin: 10px 0;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px; /* Reduced roundness */
 }
@@ -48,14 +59,8 @@ button {
     background-color: #f09;
     color: white;
     border: none;
-    border-radius: 4px; /* Reduced roundness */
 }
 
 button:hover {
     background-color: #c07;
-}
-
-.stats p {
-    text-align: left;
-    margin-left: 10px;
 }

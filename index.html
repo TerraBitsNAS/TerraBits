@@ -8,19 +8,44 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class="content">
-        <div class="TerraBit viewer" style="text-align: center;">
+    <div class="container">
+        <div class="input-area">
             <h2>TerraBits</h2>
             <input type="text" id="blockNumberInput" placeholder="Enter block number">
-            <button id="generateButton">Generate</button>
+            <button id="generateButton" onclick="generate()">Generate</button>
         </div>
-        <div id="generatedImageContainer">
-            <!-- Image will be inserted by p5.js script -->
-            <script src="sketch.js"></script>
-        </div>
-        <div id="statsContainer" class="stats">
-            <!-- Stats will be inserted by the updateStats function -->
+        <div class="generated-content">
+            <div id="generatedImageContainer">
+                <!-- The script will insert the image here -->
+            </div>
+            <div id="stats">
+                <!-- Stats will go here -->
+            </div>
         </div>
     </div>
+    <script src="sketch.js"></script>
+    <script>
+        // This function should be called when the image is generated
+        function generate() {
+            // This is just an example, you will need to adapt it
+            // to call the appropriate function from sketch.js
+            createImage();
+
+            // Assume createImage() function in sketch.js generates the image
+            // and then calls updateStats() when it's done.
+        }
+
+        // Function to update stats; you'll need to adjust it according to how
+        // your stats are actually calculated or retrieved.
+        function updateStats(waterArea, earthArea, treeArea, oreArea, goldArea) {
+            document.getElementById('stats').innerHTML = `
+                <p>Water Area: ${waterArea}</p>
+                <p>Earth Area: ${earthArea}</p>
+                <p>Tree Area: ${treeArea}</p>
+                <p>Ore Area: ${oreArea}</p>
+                <p>Gold Area: ${goldArea}</p>
+            `;
+        }
+    </script>
 </body>
 </html>

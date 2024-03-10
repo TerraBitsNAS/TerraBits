@@ -65,7 +65,7 @@ function draw() {
 function generateLand() {
   background(0);
   rotateX(0.8);
-  rotateZ(0.2)
+  rotateZ(0.2);
 
   // Reset tile counters
   waterTiles = 0;

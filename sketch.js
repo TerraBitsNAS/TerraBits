@@ -3,10 +3,10 @@ let landNoiseThreshold = 0.6;
 let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
-const seaColorBase = [50,50,150];
-const landColorBase = [19, 138, 13];
-const woodColorBase = [14, 92, 14];
-const oreColorBase = [212, 207, 207];
+const seaColorBase = [70,70,190];
+const landColorBase = [30, 150, 21];
+const woodColorBase = [35, 140, 35];
+const oreColorBase = [230, 210, 210];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)

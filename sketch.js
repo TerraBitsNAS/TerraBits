@@ -3,8 +3,8 @@ let landNoiseThreshold = 0.6;
 let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
-const seaColorBase = [17, 64, 184];
-const landColorBase = [19, 138, 13];
+const seaColorBase = [50,50,150];
+const landColorBase = [90, 50, 200];
 const woodColorBase = [14, 92, 14];
 const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];

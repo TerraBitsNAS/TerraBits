@@ -4,7 +4,7 @@ let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [50,50,150];
-const landColorBase = [90, 50, 200];
+const landColorBase = [19, 138, 13];
 const woodColorBase = [14, 92, 14];
 const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
@@ -150,9 +150,9 @@ function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
       if (random() < mappedWoodDensity) {
         // tileColor = variedColor(woodColorBase);
         //tree
-        // fillTileTree(x, y, z);
+        fillTileTree(x, y, z);
         let tree = true;
-        fillTile(woodColorBase, x, y, z);
+        // fillTile(woodColorBase, x, y, z);
         treeTiles++;
       } else {
         // tileColor = variedColor(landColorBase);

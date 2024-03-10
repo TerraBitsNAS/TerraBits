@@ -1,6 +1,7 @@
 // Initial variables
 let landNoiseThreshold = 0.6;
 let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
+let blockNumber;
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [17, 64, 184];
@@ -45,9 +46,11 @@ function preload() {
 
 function setup() {
   // Get the input and button from the HTML file
+  blockNumber = int(blockNumberInput.value()); 
   blockNumberInput = select('#blockNumberInput');
   let generateButton = select('#generateButton');
   generateButton.mousePressed(generateFromInput);
+  
 
   canvas = createCanvas(canvasSize, canvasSize, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
   background(255);

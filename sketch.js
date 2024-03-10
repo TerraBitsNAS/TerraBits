@@ -50,6 +50,7 @@ function setup() {
   generateButton.mousePressed(generateFromInput);
 
   canvas = createCanvas(600, 600, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
+  camera(0, -height / 2, (height / 2) / tan(PI / 6), 0, 0, 0, 0, 0, 1);
   background(255);
 
   noLoop();

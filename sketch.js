@@ -23,6 +23,20 @@ let table; // variable to store the CSV data
 let blockNumberInput;
 let canvas;
 
+
+let canvasSize = 366;
+
+var depth = 400;
+var cubesize = 10;
+var res = 0.005;
+var terrHeight = 200;
+
+let angleX = 0;
+let angleY = 0;
+let prevMouseX = 0;
+let prevMouseY = 0;
+let dragging = false;
+
 function preload() {
   // Load the CSV file using the raw URL
   let csvUrl = 'https://raw.githack.com/TerraBitsNAS/TerraBits/main/terra.csv';
@@ -35,14 +49,24 @@ function setup() {
   let generateButton = select('#generateButton');
   generateButton.mousePressed(generateFromInput);
 
-  // Create canvas but hide it initially
-  canvas = createCanvas(366, 366);
-  canvas.hide();
+  canvas = createCanvas(canvasSize, canvasSize, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
+  background(255);
 
   noLoop();
+  // noiseSeed(591986);
 }
 
+function draw() {
+  // draw called automatically
+    generateFromInput();
+}
+
+
 function generateLand() {
+  background(0);
+  rotateX(0.8);
+  rotateZ(0.2)
+
   // Reset tile counters
   waterTiles = 0;
   earthTiles = 0;
@@ -50,31 +74,74 @@ function generateLand() {
   goldTiles = 0;
   oreTiles = 0;
 
-  for (let x = 0; x < width; x += tileSize) {
-    for (let y = 0; y < height; y += tileSize) {
-      let landNoiseVal = noise(x / 100, y / 100);
-      let forestNoiseVal = noise(x / 50, y / 50);
-      drawTile(x, y, landNoiseVal, forestNoiseVal);
-    }
-  }
+  for (let x = -canvasSize / 2; x < canvasSize / 2; x += tileSize) {
+    for (let y = -canvasSize / 2; y < canvasSize / 2; y += tileSize) {
+      let landNoiseVal = noise((x + canvasSize / 2) / 100, (y + canvasSize / 2) / 100);
+      let forestNoiseVal = noise((x + canvasSize / 2) / 50, (y + canvasSize / 2) / 50);
+      let z = map(landNoiseVal, 0, 1, -terrHeight / 2, terrHeight / 2);
+
+      drawTile(x, y, z, landNoiseVal, forestNoiseVal);
+
+    push();
+    translate(x, y, z);
+    box(cubesize, cubesize);
+    pop();
 
   // Update statistics next to the generated image
   updateStats();
-}
-
-function drawTile(x, y, landNoiseVal, forestNoiseVal) {
-  // Helper function to add subtle color variation
-  function variedColor(baseColor) {
-    let variationRange = 7;
-    return color(
-      baseColor[0] + random(-variationRange, variationRange),
-      baseColor[1] + random(-variationRange, variationRange),
-      baseColor[2] + random(-variationRange, variationRange)
-    );
+}    }
   }
 
-  if (landNoiseVal < getSeaNoiseThreshold()) {
-    fill(variedColor(seaColorBase));
+function variedColor(baseColor) {
+  // Helper function to add subtle color variation
+  let variationRange = 7;
+  return color(
+    baseColor[0] + random(-variationRange, variationRange),
+    baseColor[1] + random(-variationRange, variationRange),
+    baseColor[2] + random(-variationRange, variationRange)
+  );
+}
+
+function fillTile(colorBase, x, y, z) {
+    tileColor = variedColor(colorBase);
+
+    fill(tileColor); // Apply the determined color
+
+    push(); // Save current drawing state
+    translate(x + tileSize / 2, y + tileSize / 2, z + tileSize / 2); // Positioning the tile correctly in 3D space
+    noStroke(); // Remove stroke for a cleaner look
+    box(tileSize); // Draw the box with the given tileSize
+    pop(); // Restore previous drawing state
+}
+
+function fillTileTree(x, y, z) {
+  //tree
+    push();
+    translate(x, y, z);
+    box(cubesize, cubesize);
+
+    if (y < 85 && random() < 0.2) {
+        //tree
+        fill(50,50,0);
+        translate(0,-cubesize,0);
+        cylinder(1, 15, 4, 4);
+
+        fill(100,map(y,0,90,255,100),100);
+        translate(0,-14,0);
+        sphere(cubesize*0.85, 6, 6);
+    }
+    pop();
+}
+
+
+function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
+  seaNoiseThreshold = getSeaNoiseThreshold();
+  let tileColor;
+
+  if (landNoiseVal < seaNoiseThreshold) {
+
+    // tileColor = variedColor(seaColorBase);
+    fillTile(seaColorBase, x, y, z);
     waterTiles++;
   } else {
     if (forestNoiseVal > landNoiseThreshold) {
@@ -82,10 +149,15 @@ function drawTile(x, y, landNoiseVal, forestNoiseVal) {
       let mappedWoodDensity = map(nonce, 1028694, 4288169963, 0.6, 0.9);
 
       if (random() < mappedWoodDensity) {
-        fill(variedColor(woodColorBase));
+        // tileColor = variedColor(woodColorBase);
+        //tree
+        // fillTileTree(x, y, z);
+        let tree = true;
+        fillTile(woodColorBase, x, y, z);
         treeTiles++;
       } else {
-        fill(variedColor(landColorBase));
+        // tileColor = variedColor(landColorBase);
+        fillTile(landColorBase, x, y, z);
         earthTiles++;
       }
     } else {
@@ -96,25 +168,33 @@ function drawTile(x, y, landNoiseVal, forestNoiseVal) {
       let mappedOreVeinsDensity = map(hashInput, 19, 30, 0.008, 0.05);
 
       if (random() < mappedPreciousVeinsDensity) {
-        fill(variedColor(preciousColorBase));
+        // tileColor = variedColor(preciousColorBase);
+        fillTile(preciousColorBase, x, y, z);
         goldTiles++;
       } else if (random() < mappedOreVeinsDensity) {
-        fill(variedColor(oreColorBase));
+        // tileColor = variedColor(oreColorBase);
+        fillTile(oreColorBase, x, y, z);
         oreTiles++;
       } else {
-        fill(variedColor(landColorBase));
+        // tileColor = variedColor(landColorBase);
+        fillTile(landColorBase, x, y, z);
         earthTiles++;
       }
     }
   }
+//   fill(tileColor); // Apply the determined color
 
-  noStroke();
-  rect(x, y, tileSize, tileSize);
+//   push(); // Save current drawing state
+//   translate(x + tileSize / 2, y + tileSize / 2, z + tileSize / 2); // Positioning the tile correctly in 3D space
+//   noStroke(); // Remove stroke for a cleaner look
+//   box(tileSize); // Draw the box with the given tileSize
+//   pop(); // Restore previous drawing state
 }
 
 function generateFromInput() {
   // Get block number from the input field
   let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
 
   // Find the corresponding row in the CSV
   let row = table.findRow(String(blockNumber), 'number');
@@ -145,6 +225,7 @@ function generateFromInput() {
 function getNonce() {
   // Get nonce from the CSV for the current block
   let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
@@ -157,7 +238,8 @@ function getNonce() {
 
 function getFeeReward() {
   // Get fee reward from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
@@ -171,7 +253,8 @@ function getFeeReward() {
 
 function getHash() {
   // Get hash from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+//   let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
@@ -184,12 +267,14 @@ function getHash() {
 
 function getSeaNoiseThreshold() {
   // Get weight from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Map weight to seaNoiseThreshold between 0.33 and 0.5
     return map(row.getNum('weight'), 3998741, 32984, 0.33, 0.5);
+
   } else {
     console.log(`Weight not found for block number ${blockNumber}`);
     return 0.4; // Default value
@@ -206,6 +291,5 @@ function updateStats() {
     <p><b>Gold Mines:</b> ${goldTiles}</p>
   `;
   // Insert the stats into the 'statsContainer' div
-  document.getElementById('statsContainer').innerHTML = statsHTML;
+  // document.getElementById('statsContainer').innerHTML = statsHTML; // uncomment
 }
-

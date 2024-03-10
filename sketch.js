@@ -49,7 +49,7 @@ function setup() {
   let generateButton = select('#generateButton');
   generateButton.mousePressed(generateFromInput);
 
-  canvas = createCanvas(canvasSize, canvasSize, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
+  canvas = createCanvas(600, 600, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
   background(255);
 
   noLoop();

@@ -3,10 +3,10 @@ let landNoiseThreshold = 0.6;
 let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
-const seaColorBase = [70,70,190];
-const landColorBase = [30, 150, 21];
-const woodColorBase = [35, 140, 35];
-const oreColorBase = [230, 210, 210];
+const seaColorBase = [17, 64, 184];
+const landColorBase = [19, 138, 13];
+const woodColorBase = [14, 92, 14];
+const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
@@ -37,30 +37,64 @@ let prevMouseX = 0;
 let prevMouseY = 0;
 let dragging = false;
 
+let row;
+
+
+function draw() {
+  background(0);
+
+  if (dragging) {
+    angleY += (mouseX - prevMouseX) * 0.01;
+    angleX += (mouseY - prevMouseY) * 0.01;
+  }
+  
+  // Apply rotation based on mouse movement
+  rotateX(angleX);
+  rotateY(angleY);
+
+  // Update previous mouse position
+  prevMouseX = mouseX;
+  prevMouseY = mouseY;
+
+  generateFromInput();
+}
+
+function mousePressed() {
+  dragging = true;
+  prevMouseX = mouseX;
+  prevMouseY = mouseY;
+}
+
+function mouseReleased() {
+  dragging = false;
+}
+
+
 function preload() {
   // Load the CSV file using the raw URL
   let csvUrl = 'https://raw.githack.com/TerraBitsNAS/TerraBits/main/terra.csv';
   table = loadTable(csvUrl, 'csv', 'header');
+
+  
 }
 
 function setup() {
   // Get the input and button from the HTML file
-  blockNumberInput = select('#blockNumberInput');
+  // blockNumberInput = select('#blockNumberInput');
+  let blockNumberInput = int(591986);
+  noiseSeed(blockNumberInput);
+  
   let generateButton = select('#generateButton');
-  generateButton.mousePressed(generateFromInput);
-
-  canvas = createCanvas(600, 600, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
-  camera(0, -height / 2, (height / 2) / tan(PI / 6), 0, 0, 0, 0, 0, 1);
+  // generateButton.mousePressed(generateFromInput);
+  
+  row = table.findRow(String(blockNumberInput), 'number');
+  
+  canvas = createCanvas(canvasSize, canvasSize, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
   background(255);
 
-  noLoop();
+  // noLoop();
+  frameRate(1)
 }
-
-function draw() {
-  // draw called automatically
-    generateFromInput();
-}
-
 
 function generateLand() {
   background(0);
@@ -151,9 +185,8 @@ function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
       if (random() < mappedWoodDensity) {
         // tileColor = variedColor(woodColorBase);
         //tree
-        fillTileTree(x, y, z);
-        let tree = true;
-        // fillTile(woodColorBase, x, y, z);
+        // fillTileTree(x, y, z);
+        fillTile(woodColorBase, x, y, z);
         treeTiles++;
       } else {
         // tileColor = variedColor(landColorBase);
@@ -162,6 +195,7 @@ function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
       }
     } else {
       let feeReward = getFeeReward(); // Get fee reward from the CSV
+
       let mappedPreciousVeinsDensity = map(feeReward, 0, 9679, 0.008, 0.03);
 
       let hashInput = getHash(); // Get hash from the CSV
@@ -194,6 +228,7 @@ function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
 function generateFromInput() {
   // Get block number from the input field
   let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
 
   // Find the corresponding row in the CSV
   let row = table.findRow(String(blockNumber), 'number');
@@ -224,6 +259,7 @@ function generateFromInput() {
 function getNonce() {
   // Get nonce from the CSV for the current block
   let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
@@ -237,6 +273,7 @@ function getNonce() {
 function getFeeReward() {
   // Get fee reward from the CSV for the current block
   let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
@@ -250,7 +287,8 @@ function getFeeReward() {
 
 function getHash() {
   // Get hash from the CSV for the current block
- let blockNumber = int(blockNumberInput.value());
+  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
   let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
@@ -263,8 +301,9 @@ function getHash() {
 
 function getSeaNoiseThreshold() {
   // Get weight from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
-  let row = table.findRow(String(blockNumber), 'number');
+  // let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(591986);
+  // let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Map weight to seaNoiseThreshold between 0.33 and 0.5

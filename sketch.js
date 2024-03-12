@@ -237,11 +237,11 @@ function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
 
 function generateFromInput() {
   // Get block number from the input field
-  // let blockNumber = int(blockNumberInput.value());
+  let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
 
   // Find the corresponding row in the CSV
-  // let row = table.findRow(String(blockNumber), 'number');
+  let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Set noiseSeed and randomSeed based on the value from the CSV
@@ -268,9 +268,9 @@ function generateFromInput() {
 
 function getNonce() {
   // Get nonce from the CSV for the current block
-  // let blockNumber = int(blockNumberInput.value());
+  let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  // let row = table.findRow(String(blockNumber), 'number');
+  let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     return row.getNum('nonce');
@@ -282,9 +282,9 @@ function getNonce() {
 
 function getFeeReward() {
   // Get fee reward from the CSV for the current block
-  // let blockNumber = int(blockNumberInput.value());
+  let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  // let row = table.findRow(String(blockNumber), 'number');
+  let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Round down to the nearest whole number
@@ -297,9 +297,9 @@ function getFeeReward() {
 
 function getHash() {
   // Get hash from the CSV for the current block
-//   let blockNumber = int(blockNumberInput.value());
+  let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  // let row = table.findRow(String(blockNumber), 'number');
+  let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     return row.getString('hash');
@@ -311,9 +311,9 @@ function getHash() {
 
 function getSeaNoiseThreshold() {
   // Get weight from the CSV for the current block
-  // let blockNumber = int(blockNumberInput.value());
+  let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  // let row = table.findRow(String(blockNumber), 'number');
+  let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Map weight to seaNoiseThreshold between 0.33 and 0.5

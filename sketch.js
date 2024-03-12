@@ -11,8 +11,13 @@ const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
 const tileSize = 5;
-const enableDrag = true;
-const test = true;
+
+const enableDrag = false;  // enables dragging of the image
+const test = true;  // disables some front-end elements and enables hard-coded seed
+const enableRotate = true;
+const rotateSpeed = 3;
+const useFrameRate = 60;
+
 
 // Tile counters
 let waterTiles = 0;
@@ -42,18 +47,30 @@ let dragging = false;
 let row;
 
 
+
 function draw() {
   background(0);
+  rotateX(0.8);
   
   if (enableDrag){
     dragIt();
+  }
+  
+  if (enableRotate) {
+      let angle = radians(frameCount) * rotateSpeed;
+      rotateZ(angle);
+    
+      // let time = millis() / 1000; // Current time in seconds
+      // angle = radians(rotationSpeed * time); // Convert speed to radians per second and multiply by elapsed time
+      // rotateZ(angle);
+
   }
 
   generateFromInput();
 }
 
 function dragIt(){
-    if (dragging) {
+  if (dragging) {
     angleY += (mouseX - prevMouseX) * 0.01;
     angleX += (mouseY - prevMouseY) * 0.01;
   }
@@ -87,29 +104,33 @@ function preload() {
 function setup() {
   
   // Get the input and button from the HTML file
-  // let blockNumberInput = int(591986);
+
   
   blockNumberInput = select('#blockNumberInput');
   noiseSeed(blockNumberInput);
   
   let generateButton = select('#generateButton');
-  generateButton.mousePressed(generateFromInput);
   
+  if (test){
+      blockNumberInput = int(591986);
+  } else {
+    generateButton.mousePressed(generateFromInput);
+  }
+  console.log(blockNumberInput);
   row = table.findRow(String(blockNumberInput), 'number');
   
   canvas = createCanvas(canvasSize, canvasSize, WEBGL); // WEBGL starts drawing in [0,0,0] which is the middle.
   background(255);
   
-  if (enableDrag){
-    frameRate(1)
+  if (enableDrag || enableRotate){
+    frameRate(useFrameRate);
   } else {noLoop();}
 
 }
 
 function generateLand() {
   background(0);
-  rotateX(0.8);
-  rotateZ(0.2);
+
 
   // Reset tile counters
   waterTiles = 0;
@@ -131,8 +152,8 @@ function generateLand() {
     box(cubesize, cubesize);
     pop();
 
-  // Update statistics next to the generated image
-  updateStats();
+    // Update statistics next to the generated image
+    updateStats();
 }    }
   }
 
@@ -237,11 +258,11 @@ function drawTile(x, y, z, landNoiseVal, forestNoiseVal) {
 
 function generateFromInput() {
   // Get block number from the input field
-  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
 
   // Find the corresponding row in the CSV
-  let row = table.findRow(String(blockNumber), 'number');
+  // let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Set noiseSeed and randomSeed based on the value from the CSV
@@ -253,11 +274,11 @@ function generateFromInput() {
     generateLand();
 
     // Log the counts
-    console.log(`Water Area: ${waterTiles}`);
-    console.log(`Earth Area: ${earthTiles}`);
-    console.log(`Tree Area: ${treeTiles}`);
-    console.log(`Ore Area: ${oreTiles}`);
-    console.log(`Gold Area: ${goldTiles}`);
+    // console.log(`Water Area: ${waterTiles}`);
+    // console.log(`Earth Area: ${earthTiles}`);
+    // console.log(`Tree Area: ${treeTiles}`);
+    // console.log(`Ore Area: ${oreTiles}`);
+    // console.log(`Gold Area: ${goldTiles}`);
 
     // Show the canvas after generating
     canvas.show();
@@ -268,9 +289,9 @@ function generateFromInput() {
 
 function getNonce() {
   // Get nonce from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  let row = table.findRow(String(blockNumber), 'number');
+  // let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     return row.getNum('nonce');
@@ -282,9 +303,9 @@ function getNonce() {
 
 function getFeeReward() {
   // Get fee reward from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  let row = table.findRow(String(blockNumber), 'number');
+  // let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Round down to the nearest whole number
@@ -297,9 +318,9 @@ function getFeeReward() {
 
 function getHash() {
   // Get hash from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+//   let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  let row = table.findRow(String(blockNumber), 'number');
+  // let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     return row.getString('hash');
@@ -311,9 +332,9 @@ function getHash() {
 
 function getSeaNoiseThreshold() {
   // Get weight from the CSV for the current block
-  let blockNumber = int(blockNumberInput.value());
+  // let blockNumber = int(blockNumberInput.value());
   // let blockNumber = int(591986);
-  let row = table.findRow(String(blockNumber), 'number');
+  // let row = table.findRow(String(blockNumber), 'number');
 
   if (row) {
     // Map weight to seaNoiseThreshold between 0.33 and 0.5
@@ -325,3 +346,15 @@ function getSeaNoiseThreshold() {
   }
 }
 
+function updateStats() {
+  // Assuming waterTiles, earthTiles, treeTiles, oreTiles, and goldTiles are already defined
+  let statsHTML = `
+    <p><b>Water Area:</b> ${waterTiles}</p>
+    <p><b>Land Area:</b> ${earthTiles}</p>
+    <p><b>Forests:</b> ${treeTiles}</p>
+    <p><b>Ore Deposits:</b> ${oreTiles}</p>
+    <p><b>Gold Mines:</b> ${goldTiles}</p>
+  `;
+  // Insert the stats into the 'statsContainer' div
+  // document.getElementById('statsContainer').innerHTML = statsHTML; // uncomment
+}

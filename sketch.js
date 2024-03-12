@@ -15,8 +15,8 @@ const tileSize = 5;
 const enableDrag = false;  // enables dragging of the image
 const test = false;  // disables some front-end elements and enables hard-coded seed
 const enableRotate = true;
-const rotateSpeed = 2.5;
-const useFrameRate = 30;
+const rotateSpeed = 2;
+const useFrameRate = 60;
 
 
 // Tile counters
@@ -50,7 +50,7 @@ let row;
 
 function draw() {
   background(0);
-  rotateX(0.1);
+  rotateX(0.85);
   
   if (enableDrag){
     dragIt();

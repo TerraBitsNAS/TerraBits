@@ -80,12 +80,12 @@ function preload() {
 
 function setup() {
   // Get the input and button from the HTML file
-  // blockNumberInput = select('#blockNumberInput');
+  blockNumberInput = select('#blockNumberInput');
   let blockNumberInput = int(591986);
   noiseSeed(blockNumberInput);
   
   let generateButton = select('#generateButton');
-  // generateButton.mousePressed(generateFromInput);
+  generateButton.mousePressed(generateFromInput);
   
   row = table.findRow(String(blockNumberInput), 'number');
   

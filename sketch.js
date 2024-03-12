@@ -262,7 +262,7 @@ function generateFromInput() {
     // Show the canvas after generating
     canvas.show();
   } else {
-    console.log(`Block number ${blockNumber} not found in the CSV.`);
+    console.log(`Block number ${blockNumberInput} not found in the CSV.`);
   }
 }
 

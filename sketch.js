@@ -13,7 +13,7 @@ const preciousColorBase = [252, 252, 0];
 const tileSize = 5;
 
 const enableDrag = false;  // enables dragging of the image
-const test = true;  // disables some front-end elements and enables hard-coded seed
+const test = false;  // disables some front-end elements and enables hard-coded seed
 const enableRotate = true;
 const rotateSpeed = 3;
 const useFrameRate = 60;

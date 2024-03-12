@@ -50,7 +50,7 @@ let row;
 
 function draw() {
   background(0);
-  rotateX(0.8);
+  rotateX(0.6);
   
   if (enableDrag){
     dragIt();

@@ -4,13 +4,13 @@ let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [17, 64, 184];
-const landColorBase = [54, 140, 28];
+const landColorBase = [69, 155, 49];
 const woodColorBase = [19, 138, 13];
 const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
-const tileSize = 6.4;
+const tileSize = 8.5;
 
 const enableDrag = false;  // enables dragging of the image
 const test = false;  // disables some front-end elements and enables hard-coded seed
@@ -31,12 +31,12 @@ let blockNumberInput;
 let canvas;
 
 
-let canvasSize = 366;
+let canvasSize = 550;
 
 var depth = 400;
-var cubesize = 10;
+var cubesize = 12;
 var res = 0.005;
-var terrHeight = 200;
+var terrHeight = 169;
 
 let angleX = 0;
 let angleY = 0;
@@ -50,7 +50,7 @@ let row;
 
 function draw() {
   background(0);
-  rotateX(0.95);
+  rotateX(0.9);
   
   if (enableDrag){
     dragIt();

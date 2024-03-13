@@ -143,7 +143,7 @@ function generateLand() {
     for (let y = -canvasSize / 2; y < canvasSize / 2; y += tileSize) {
       let landNoiseVal = noise((x + canvasSize / 2) / 100, (y + canvasSize / 2) / 100);
       let forestNoiseVal = noise((x + canvasSize / 2) / 50, (y + canvasSize / 2) / 50);
-      let z = map(landNoiseVal, 0, 1, -terrHeight / 2, terrHeight / 2);
+      let z = map(landNoiseVal, 0, 1, -terrHeight / 6, terrHeight / 2);
 
       drawTile(x, y, z, landNoiseVal, forestNoiseVal);
 

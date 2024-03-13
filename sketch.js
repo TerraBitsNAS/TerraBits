@@ -10,12 +10,12 @@ const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
-const tileSize = 6.5;
+const tileSize = 6.4;
 
 const enableDrag = false;  // enables dragging of the image
 const test = false;  // disables some front-end elements and enables hard-coded seed
 const enableRotate = true;
-const rotateSpeed = 0.7;
+const rotateSpeed = 0.6;
 const useFrameRate = 30;
 
 

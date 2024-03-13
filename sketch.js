@@ -4,19 +4,19 @@ let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [17, 64, 184];
-const landColorBase = [19, 138, 13];
-const woodColorBase = [14, 92, 14];
+const landColorBase = [54, 140, 28];
+const woodColorBase = [19, 138, 13];
 const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
-const tileSize = 6.2;
+const tileSize = 6.5;
 
 const enableDrag = false;  // enables dragging of the image
 const test = false;  // disables some front-end elements and enables hard-coded seed
 const enableRotate = true;
-const rotateSpeed = 0.9;
-const useFrameRate = 60;
+const rotateSpeed = 0.7;
+const useFrameRate = 30;
 
 
 // Tile counters
@@ -50,7 +50,7 @@ let row;
 
 function draw() {
   background(0);
-  rotateX(0.85);
+  rotateX(0.95);
   
   if (enableDrag){
     dragIt();
@@ -185,15 +185,15 @@ function fillTileTree(x, y, z) {
     translate(x, y, z);
     box(cubesize, cubesize);
 
-    if (y < 85 && random() < 0.2) {
+    if (y < 85 && random() < 2) {
         //tree
-        fill(50,50,0);
+        fill(19, 138, 13);
         translate(0,-cubesize,0);
         cylinder(1, 15, 4, 4);
 
-        fill(100,map(y,0,90,255,100),100);
-        translate(0,-14,0);
-        sphere(cubesize*0.7, 6, 6);
+        fill(19, 138, 13);
+        translate(0,30,0);
+        sphere(cubesize*0.8, 8, 6);
     }
     pop();
 }

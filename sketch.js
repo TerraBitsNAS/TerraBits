@@ -1,6 +1,6 @@
 // Initial variables
 let landNoiseThreshold = 0.6;
-let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
+let oreVeinsDensity = 1; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [17, 64, 184];
@@ -10,12 +10,12 @@ const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
-const tileSize = 8.5;
+const tileSize = 8;
 
 const enableDrag = false;  // enables dragging of the image
 const test = false;  // disables some front-end elements and enables hard-coded seed
 const enableRotate = true;
-const rotateSpeed = 0.6;
+const rotateSpeed = 0.8;
 const useFrameRate = 30;
 
 
@@ -31,12 +31,12 @@ let blockNumberInput;
 let canvas;
 
 
-let canvasSize = 550;
+let canvasSize = 360;
 
-var depth = 400;
-var cubesize = 12;
+var depth = 0.02;
+var cubesize = 15;
 var res = 0.005;
-var terrHeight = 169;
+var terrHeight = 200;
 
 let angleX = 0;
 let angleY = 0;

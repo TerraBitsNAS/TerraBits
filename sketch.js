@@ -1,6 +1,6 @@
 // Initial variables
 let landNoiseThreshold = 0.6;
-let oreVeinsDensity = 1; // Default value, you can adjust this as needed
+let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [17, 64, 184];
@@ -36,7 +36,7 @@ let canvasSize = 360;
 var depth = 0.02;
 var cubesize = 15;
 var res = 0.005;
-var terrHeight = 200;
+var terrHeight = 400;
 
 let angleX = 0;
 let angleY = 0;

@@ -4,20 +4,19 @@ let oreVeinsDensity = 0.05; // Default value, you can adjust this as needed
 
 // Base Colors as arrays for RGB manipulation
 const seaColorBase = [17, 64, 184];
-const landColorBase = [54, 140, 28];
+const landColorBase = [69, 155, 49, 59,59]; 
 const woodColorBase = [19, 138, 13];
 const oreColorBase = [212, 207, 207];
 const preciousColorBase = [252, 252, 0];
 
 // Size of each tile (in pixels)
-const tileSize = 6.4;
+const tileSize = 8;
 
 const enableDrag = false;  // enables dragging of the image
-const test = false;  // disables some front-end elements and enables hard-coded seed
+const test = true;  // disables some front-end elements and enables hard-coded seed
 const enableRotate = true;
-const rotateSpeed = 0.6;
-const useFrameRate = 30;
-
+const rotateSpeed = 0.8;
+const useFrameRate = 42;
 
 // Tile counters
 let waterTiles = 0;
@@ -33,9 +32,9 @@ let canvas;
 
 let canvasSize = 366;
 
-var depth = 400;
-var cubesize = 10;
-var res = 0.005;
+var depth = 0.02;
+var cubesize = 15;
+var res = 1;
 var terrHeight = 200;
 
 let angleX = 0;
@@ -157,6 +156,7 @@ function generateLand() {
 }    }
   }
 
+
 function variedColor(baseColor) {
   // Helper function to add subtle color variation
   let variationRange = 7;
@@ -173,10 +173,12 @@ function fillTile(colorBase, x, y, z) {
     fill(tileColor); // Apply the determined color
 
     push(); // Save current drawing state
-    translate(x + tileSize / 2, y + tileSize / 2, z + tileSize / 2); // Positioning the tile correctly in 3D space
+    translate(x + tileSize / 3, y + tileSize / 3, z + tileSize / 3); // Positioning the tile correctly in 3D space
     noStroke(); // Remove stroke for a cleaner look
     box(tileSize); // Draw the box with the given tileSize
     pop(); // Restore previous drawing state
+    stroke(0,0,0,120)
+
 }
 
 function fillTileTree(x, y, z) {
@@ -193,7 +195,7 @@ function fillTileTree(x, y, z) {
 
         fill(19, 138, 13);
         translate(0,30,0);
-        sphere(cubesize*0.8, 8, 6);
+        sphere(cubesize*0.6, 4, 4);
     }
     pop();
 }

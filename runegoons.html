@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rune Goons High Res</title>
+<title>Rune Goons Image Finder</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -27,14 +27,14 @@
 </head>
 <body>
 <div id="container">
-    <h1>Rune Goons High Res</h1>
+    <h1>Rune Goons Image Finder</h1>
     <input type="text" id="searchInput" placeholder="Enter inscription ID">
     <button onclick="searchImage()">Search</button>
     <div id="result"></div>
 </div>
 
 <script>
-const jsonUrl = 'https://github.com/TerraBitsNAS/TerraBits/raw/main/metadata.json';
+const jsonUrl = 'https://raw.githubusercontent.com/TerraBitsNAS/TerraBits/main/metadata.json';
 
 async function fetchData() {
     try {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rune Goons High Res</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    #container {
+        text-align: center;
+    }
+    img {
+        max-width: 80%;
+        height: auto;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h1>Rune Goons High Res</h1>
+    <input type="text" id="searchInput" placeholder="Enter inscription ID">
+    <button onclick="searchImage()">Search</button>
+    <div id="result"></div>
+</div>
+
+<script>
+const jsonUrl = 'https://github.com/TerraBitsNAS/TerraBits/raw/main/metadata.json';
+
+async function fetchData() {
+    try {
+        const response = await fetch(jsonUrl);
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+}
+
+async function searchImage() {
+    const data = await fetchData();
+    const searchId = document.getElementById('searchInput').value.trim();
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = ''; // Clear previous results
+
+    if (data) {
+        const item = data.find(item => item.id === searchId);
+        if (item) {
+            const baseUrl = 'https://nftstorage.link/ipfs/bafybeiagmbxd45y2lh6l6pzwt6ioeqedoko4qsgw23s42pnu3elzvmu4ly/';
+            const imageUrl = `${baseUrl}${item.meta.high_res_img_url.replace('.webp', '.png')}`;
+            resultDiv.innerHTML = `<img src="${imageUrl}" alt="${item.meta.name}">`;
+        } else {
+            resultDiv.innerHTML = '<p>No item found with that ID.</p>';
+        }
+    }
+}
+</script>
+</body>
+</html>
